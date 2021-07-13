@@ -219,10 +219,7 @@ const PaginationContainer = styled.div`
   }
 `
 
-// const PageNumber = styled.a<{}>``
-
 const Pagination = (props: any) => {
-  console.log(props)
   return (
     <PaginationContainer style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
       <FiChevronLeft />

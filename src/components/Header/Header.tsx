@@ -11,6 +11,11 @@ const Wrapper = styled.header`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
 `
 
 const MenuButton = styled.a`

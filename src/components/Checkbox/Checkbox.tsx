@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' }) <any>`
@@ -54,22 +54,50 @@ const StyledCheckbox = styled.div<any>`
   }
 `
 
-const CheckboxContainer = styled.div`
-  display: inline-block;
+const Label = styled.span`
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--kuma-colors-gray-900);
+  letter-spacing: 0.02em;
+  margin-left: 16px;
+`
+const Caption = styled.p`
+  margin: 0;
+  margin-top: -5px;
+  font-weight: normal;
+  font-size: 12px;
+  color: var(--kuma-colors-gray-300);
+  letter-spacing: 0.02em;
+  margin-left: 16px;
+`
+
+const CheckboxContainer = styled.label`
+  display: flex;
+  align-items: center;
   vertical-align: middle;
 `
 
+type CheckboxProps = {
+  label?: string;
+  caption?: string;
+}
+
 const Checkbox = React.forwardRef(({ ...props }: any, ref) => {
+  const [checked, setChecked] = useState(false);
   return (
     <CheckboxContainer>
-      <HiddenCheckbox onClick={props.onClick} ref={ref} {...props} />
-      <StyledCheckbox {...props} >
+      <HiddenCheckbox onChange={() => setChecked(!checked)} ref={ref} checked={checked} />
+      <StyledCheckbox checked={checked} >
         <IconContainer>
           <Icon viewBox="0 0 24 24">
             <polyline points="20 6 9 17 4 12" />
           </Icon>
         </IconContainer>
       </StyledCheckbox>
+      <div>
+        {props.label && <Label>{props.label}</Label>}
+        {props.caption && <Caption>{props.caption}</Caption>}
+      </div>
     </CheckboxContainer>
   )
 });

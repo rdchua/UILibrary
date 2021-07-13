@@ -7,7 +7,6 @@ const ButtonStyled = styled.button<ButtonProps>`
   flex-direction: row;
   padding: 8px 16px;
   align-items: center;
-  border-radius: 12px;
   align-self: center;
   border: 0;
   color: white;
@@ -18,37 +17,69 @@ const ButtonStyled = styled.button<ButtonProps>`
   outline: none;
 
   ${({ size }) => (!size || size === 'large') ? `
-    padding: 8px 16px;
+    padding: 16px;
     font-size: 16px;
+    border-radius: 16px;
+
+    svg {
+      font-size: 20px;
+    }
+
+    svg ~ span {
+      margin-left: 15px;
+    }
+
+    span + svg {
+      margin-left: 15px;
+    }
   ` : null};
 
   ${({ size }) => size === 'medium' ? `
-    padding: 8px;
+    padding: 12px;
     font-size: 14px;
+    border-radius: 12px;
+
+    svg {
+      font-size: 16px;
+    }
+
+    svg ~ span {
+      margin-left: 10px;
+    }
+
+    span + svg {
+      margin-left: 10px;
+    }
+
   ` : null};
 
   ${({ size }) => size === 'small' ? `
-    padding: 8px 16px;
+    padding: 8px;
     font-size: 12px;
+    border-radius: 10px;
+
+    svg {
+      font-size: 14px;
+    }
+
+    svg ~ span {
+      margin-left: 5px;
+    }
+
+    span + svg {
+      margin-left: 5px;
+    }
+
   ` : null}
 
-  ${({ view, textColor }) => view === 'outline' ? `
-    padding: 8px 16px;
+  ${({ view, color }) => view === 'outline' ? `
     background: transparent;
     border: 1px solid #E8E8EA;
-    color: ${textColor ? textColor : 'var(--kuma-colors-gray-900)'};
+    color: ${color ? `var(--kuma-colors-${color}-900)` : 'var(--kuma-colors-gray-900)'};
   ` : null}
 
   svg {
     /* stroke-width: 1.5px; */
-  }
-
-  svg ~ span {
-    margin-left: 5px;
-  }
-
-  span + svg {
-    margin-left: 5px;
   }
 
   :hover {
@@ -97,9 +128,9 @@ type ButtonProps = {
 const Button = (props: ButtonProps) => {
   return (
     <ButtonStyled {...props}>
-      {props.leftIcon}
-      <span>{props.text}</span>
-      {props.rightIcon}
+      {props.leftIcon && props.leftIcon}
+      {props.text && <span>{props.text}</span>}
+      {props.rightIcon && props.rightIcon}
     </ButtonStyled>
   )
 }

@@ -11,7 +11,7 @@ const GlobalStyles = createGlobalStyle`
   :root {
     ${colors}
     --font-primary: "Nunito Sans", sans-serif;
-    --layout-width: 1100px;
+    --input-padding: 20px 24px;
   }
 
   html, body {

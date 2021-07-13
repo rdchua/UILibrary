@@ -1,4 +1,5 @@
 import React from 'react';
+import { BreakpointProvider } from 'react-socks';
 import { ThemeProvider } from 'styled-components';
 import { theme, GlobalStyles } from './theme';
 import { BrowserRouter } from 'react-router-dom';
@@ -6,16 +7,20 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Content from './components/Content/Content';
 import Orders from './pages/Orders/Orders';
 import './App.css';
+import PlayGround from './pages/Orders/PlayGround';
 
 function App() {
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <BrowserRouter>
-        <Sidebar />
-        <Content>
-          <Orders />
-        </Content>
+        <BreakpointProvider>
+          <Sidebar />
+          <Content>
+            <PlayGround />
+          </Content>
+        </BreakpointProvider>
       </BrowserRouter>
     </ThemeProvider>
   );
